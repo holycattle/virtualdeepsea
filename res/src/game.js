@@ -1,22 +1,32 @@
-var canvas = document.getElementById('gameCanvas');
-var width = canvas.width, height = canvas.height;
-var context = canvas.getContext('2d');
+const fps = 30;
 
-function loadBackground(src) {
-	var bg = new Image();
-	bg.onload = function() {
-		context.drawImage(this, 0, 0);
-	}
-	bg.src = src;
+var x = 0, y = 0;
+var xVel = 1, yVel = 1;
+
+var imgBg = new Image();
+imgBg.src = "../res/img/deepsea.bmp";
+var imgSub = new Image();
+imgSub.src = "../res/img/submarine.gif";
+
+var canvas = null, context = null;
+
+window.onload = init;
+
+function init() {
+	canvas = document.getElementById('backgroundCanvas');
+	canvas.width = window.innerWidth/2 - 50;
+	canvas.height = window.innerHeight - 20;
+	context = canvas.getContext('2d');
+	drawBackground();
+	loadSubmarine();
+	//setInterval(draw, 1000/fps);
 }
 
-function clear() {
-	context.fillStyle = '#d0e7f9';
-	context.beginPath(); //begin drawing
-	//canvas_context.rect(0, 0, width, height);
-	loadBackground('../res/img/deepsea.bmp');
-	context.closePath(); //end drawing
-	context.fill();
+function drawBackground() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	context.drawImage(imgBg, x, y);
 }
 
-clear();
+function loadSubmarine() {
+	context.drawImage(imgSub, x, y);
+}
