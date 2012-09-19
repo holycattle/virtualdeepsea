@@ -58,4 +58,21 @@ function GameObjectManager() {
 	this.removeGameObject = function(gameObject) {
 		this.gameObjects.removeObject(gameObject);
 	};
+	
+    this.keyDown = function(event) {
+        for (x in this.gameObjects) {
+            if (this.gameObjects[x].keyDown) {
+                this.gameObjects[x].keyDown(event);
+            }
+        }
+    };
+
+    this.keyUp = function(event) {
+        for (x in this.gameObjects) {
+            if (this.gameObjects[x].keyUp) {
+                this.gameObjects[x].keyUp(event);
+            }
+        }
+    }
+	
 }
