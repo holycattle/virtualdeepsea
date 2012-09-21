@@ -1,9 +1,13 @@
 /**
     A class to represent the player on the screen
-    @author <a href="mailto:matthewcasperson@gmail.com">Matthew Casperson</a>
+    @original_author <a href="mailto:matthewcasperson@gmail.com">Matthew Casperson</a>
     @class
 */
-function Player()
+
+var submarine_image = new Image();
+submarine_image.src = "../res/img/submarine.gif";
+
+function Submarine()
 {
     /** The speed that the player moves at
         @type Number
@@ -29,9 +33,9 @@ function Player()
     /**
         Initialises this object
     */
-    this.startupPlayer = function()
+    this.startupSubmarine = function()
     {
-        this.startupAnimatedGameObject(g_run_left, 300, 200, 1, 12, 20);
+        this.startupAnimatedGameObject(submarine_image, 0, 0, 1, 1, 30);
         return this;
     }
 
@@ -41,6 +45,7 @@ function Player()
     */
     this.keyDown = function(event)
     {
+        console.log('submarine keydown!');
         // left
         if (event.keyCode == 37)
             this.left = true;
@@ -53,6 +58,8 @@ function Player()
         // down
         if (event.keyCode == 40)
             this.down = true;
+            
+        console.log(this.down);
     }
 
     /**
@@ -61,6 +68,7 @@ function Player()
     */
     this.keyUp = function(event)
     {
+        console.log('submarine keyup!');
         // left
         if (event.keyCode == 37)
             this.left = false;
@@ -84,6 +92,7 @@ function Player()
     */
 	this.update = function (/**Number*/ dt, /**CanvasRenderingContext2D*/context, /**Number*/ xScroll, /**Number*/ yScroll)
     {
+        console.log('update sub');
         if (this.left)
             this.x -= this.speed * dt;
         if (this.right)
@@ -107,4 +116,4 @@ function Player()
     //make constructor
 }
 
-Player.prototype = new VisualGameObject;
+Submarine.prototype = new AnimatedGameObject;

@@ -33,6 +33,7 @@ function GameObject()
         this.x = x;
         this.y = y;
         g_GameObjectManager.addGameObject(this);
+        console.log(g_GameObjectManager.gameObjects);
         return this;
     }
     

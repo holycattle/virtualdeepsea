@@ -13,13 +13,21 @@ function GameObjectManager() {
 		g_GameObjectManager = this;
 		
 		this.canvas = document.getElementById('backgroundCanvas'); //whatever the name of the canvas is
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight - 35;
+        
+        document.onkeydown = function(event){g_GameObjectManager.keyDown(event);}
+        document.onkeyup = function(event){g_GameObjectManager.keyUp(event);}
+        
+        
 		this.context2D = this.canvas.getContext('2d');
-		this.backBuffer = document.createElement('backgroundCanvas'); //name of the canvas
+		this.backBuffer = document.createElement('canvas'); //name of the canvas
 		this.backBuffer.width = this.canvas.width;
 		this.backBuffer.height = this.canvas.height;
 		this.backBufferContext2D = this.backBuffer.getContext('2d');
 		this.applicationManager = new ApplicationManager().startupApplicationManager();
 		setInterval(function(){g_GameObjectManager.draw();}, SECONDS_BETWEEN_FRAMES);
+        
 		return this;
 	}
 	
@@ -32,10 +40,16 @@ function GameObjectManager() {
 		// clear the drawing contexts
 		this.backBufferContext2D.clearRect(0, 0, this.backBuffer.width, this.backBuffer.height);
 		this.context2D.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	
+        //console.log(this.gameObjects);
+        
 		for(x in this.gameObjects) {
+            //console.log(this.gameObjects[1]);
 			if(this.gameObjects[x].draw) {
-				this.gameObjects[x].update(dt, this.backBufferContext2D)
+                console.log('draw sub!');
+                //alert();
+                //if(this.gameObjects[1] instanceof VisualGameObject) break;
+                if(this.gameObjects[x].update)
+                    this.gameObjects[x].update(dt, this.backBufferContext2D, this.xScroll, this.yScroll);
 			}
 		}
 		
@@ -48,28 +62,32 @@ function GameObjectManager() {
 		
 		//copy the back buffer to the displayed canvas
 		this.context2D.drawImage(this.backBuffer, 0, 0);
-	};
+	}
 	
 	this.addGameObject = function(gameObject) {
 		this.gameObjects.push(gameObject);
 		this.gameObjects.sort(function(a, b) {return a.zOrder - b.zOrder;});
-	};
+	}
 	
 	this.removeGameObject = function(gameObject) {
 		this.gameObjects.removeObject(gameObject);
-	};
+	}
 	
     this.keyDown = function(event) {
+        console.log(event);
         for (x in this.gameObjects) {
             if (this.gameObjects[x].keyDown) {
                 this.gameObjects[x].keyDown(event);
             }
         }
-    };
+    }
 
     this.keyUp = function(event) {
+        console.log(event);
         for (x in this.gameObjects) {
+            
             if (this.gameObjects[x].keyUp) {
+                
                 this.gameObjects[x].keyUp(event);
             }
         }
