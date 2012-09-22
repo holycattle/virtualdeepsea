@@ -7,6 +7,9 @@
 background_img = new Image();
 background_img.src = "../res/img/deepsea.bmp";
 
+vampire_squid = new Image();
+vampire_squid.src = "../res/img/vampiresquid.gif";
+
 function ApplicationManager()
 {
     /**
@@ -18,6 +21,7 @@ function ApplicationManager()
 
         this.background = new VisualGameObject().startupVisualGameObject(background_img, 0, 0, 0);
 		this.submarine = new Submarine().startupSubmarine();
+        this.vampiresquid = new Creature().startupCreature(vampire_squid, 200, 50, 1, 'vampiresquid.html');
         return this;
     }; //z = 1 because this is not in the background
 }

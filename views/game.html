@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 
 <html>
-<body>
 
-	<canvas id="backgroundCanvas">
-	Sorry, but your browser does not support the HTML5 canvas tag.
-	</canvas>
+<link href="../res/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="../res/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span6">
+        
+        <canvas id="backgroundCanvas">
+        Sorry, but your browser does not support the HTML5 canvas tag.
+        </canvas>
+        
+    </div>
+
+    <div class="span6">
+        <iframe src="1.html" id="infoIframe">
+        Sorry, but your browser does not support the HTML5 canvas tag.
+        </iframe>
+    </div>
+    </div>
+</div>
 
 </body>
 
@@ -29,10 +46,13 @@ window.addEventListener('keyup',
 false);
 </script>
 
+<script src="../res/src/jquery.js"></script>
+<script src="../res/bootstrap/js/bootstrap.min.js"></script>
 <script src="../res/src/GameObject.js"></script>
 <script src="../res/src/VisualGameObject.js"></script>
 <script src="../res/src/AnimatedGameObject.js"></script>
 <script src="../res/src/submarine.js"></script>
+<script src="../res/src/Creature.js"></script>
 <script src="../res/src/Utils.js"></script>
 <script src="../res/src/ApplicationManager.js"></script>
 <script src="../res/src/gameobjectmanager.js"></script>

@@ -13,14 +13,23 @@ function GameObjectManager() {
 		g_GameObjectManager = this;
 		
 		this.canvas = document.getElementById('backgroundCanvas'); //whatever the name of the canvas is
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight - 35;
+        //this.canvas.width = this.canvas.style.width = window.innerWidth;
+        //this.canvas.height = this.canvas.style.height = window.innerHeight - 35;
         
         document.onkeydown = function(event){g_GameObjectManager.keyDown(event);}
         document.onkeyup = function(event){g_GameObjectManager.keyUp(event);}
         
         
 		this.context2D = this.canvas.getContext('2d');
+        
+        this.context2D.canvas.height = window.innerHeight - 35;
+        this.context2D.canvas.width  = window.innerWidth;
+        
+        this.info_iframe = document.getElementById('infoIframe');
+        this.info_iframe.height = this.context2D.canvas.height;
+        this.info_iframe.width = this.context2D.canvas.width / 2 - 35;
+        
+        console.log(this.context2D);
 		this.backBuffer = document.createElement('canvas'); //name of the canvas
 		this.backBuffer.width = this.canvas.width;
 		this.backBuffer.height = this.canvas.height;
@@ -45,7 +54,7 @@ function GameObjectManager() {
 		for(x in this.gameObjects) {
             //console.log(this.gameObjects[1]);
 			if(this.gameObjects[x].draw) {
-                console.log('draw sub!');
+                //console.log('draw sub!');
                 //alert();
                 //if(this.gameObjects[1] instanceof VisualGameObject) break;
                 if(this.gameObjects[x].update)
