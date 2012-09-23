@@ -69,6 +69,10 @@ function GameObjectManager() {
 			
 		}
 		
+        //check for collision
+            //if collide == true
+                //load Creature.src into iframe
+        
 		//copy the back buffer to the displayed canvas
 		this.context2D.drawImage(this.backBuffer, 0, 0);
 	}
