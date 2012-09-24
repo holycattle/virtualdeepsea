@@ -38,5 +38,10 @@ function VisualGameObject()
     {
         this.shutdownGameObject();
     }
+    
+    //get the center of the image
+    this.getAnchor = function() {
+        return [this.x + this.image.width/2, this.y + this.image.height/2];
+    }
 }
 VisualGameObject.prototype = new GameObject;

@@ -7,5 +7,5 @@ var g_image = new Image();
 window.onload = init;
 
 function init() {
-	new GameObjectManager().startupGameObjectManager();
+	app = new GameObjectManager().startupGameObjectManager();
 }

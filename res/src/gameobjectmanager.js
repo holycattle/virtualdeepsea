@@ -56,7 +56,6 @@ function GameObjectManager() {
 			if(this.gameObjects[x].draw) {
                 //console.log('draw sub!');
                 //alert();
-                //if(this.gameObjects[1] instanceof VisualGameObject) break;
                 if(this.gameObjects[x].update)
                     this.gameObjects[x].update(dt, this.backBufferContext2D, this.xScroll, this.yScroll);
 			}
@@ -69,7 +68,18 @@ function GameObjectManager() {
 			
 		}
 		
+        var x_axis = 0, y_axis = 0;
+        var player = null;
         //check for collision
+		for(x in this.gameObjects) {
+			if(this.gameObjects[x] instanceof Creature) {
+                //console.log('found a Creature at ' + [this.gameObjects[x].x, this.gameObjects[x].y]);
+				if(collision(this.applicationManager.submarine, this.gameObjects[x])) {
+                    
+                }
+			}
+			
+		}
             //if collide == true
                 //load Creature.src into iframe
         
@@ -87,7 +97,7 @@ function GameObjectManager() {
 	}
 	
     this.keyDown = function(event) {
-        console.log(event);
+        //console.log(event);
         for (x in this.gameObjects) {
             if (this.gameObjects[x].keyDown) {
                 this.gameObjects[x].keyDown(event);
@@ -96,7 +106,7 @@ function GameObjectManager() {
     }
 
     this.keyUp = function(event) {
-        console.log(event);
+        //console.log(event);
         for (x in this.gameObjects) {
             
             if (this.gameObjects[x].keyUp) {

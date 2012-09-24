@@ -45,7 +45,7 @@ function Submarine()
     */
     this.keyDown = function(event)
     {
-        console.log('submarine keydown!');
+        //console.log('submarine keydown!');
         // left
         if (event.keyCode == 37)
             this.left = true;
@@ -58,8 +58,7 @@ function Submarine()
         // down
         if (event.keyCode == 40)
             this.down = true;
-            
-        console.log(this.down);
+        console.log(this.getAnchor());
     }
 
     /**
@@ -68,7 +67,7 @@ function Submarine()
     */
     this.keyUp = function(event)
     {
-        console.log('submarine keyup!');
+        //console.log('submarine keyup!');
         // left
         if (event.keyCode == 37)
             this.left = false;
@@ -92,7 +91,7 @@ function Submarine()
     */
 	this.update = function (/**Number*/ dt, /**CanvasRenderingContext2D*/context, /**Number*/ xScroll, /**Number*/ yScroll)
     {
-        console.log('update sub');
+        //console.log('update sub');
         if (this.left)
             this.x -= this.speed * dt;
         if (this.right)
