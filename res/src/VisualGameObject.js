@@ -10,6 +10,7 @@ function VisualGameObject()
         @type Image
     */
     this.image = null;
+    this.url = null;
     
     /**
         Draws this element to the back buffer
@@ -28,6 +29,14 @@ function VisualGameObject()
     {
         this.startupGameObject(x, y, z);
         this.image = image;
+        return this;
+    }
+    
+    this.startupURLVisualGameObject = function(/**Image*/ image, /**Number*/ x, /**Number*/ y, /**Number*/ z, url)
+    {
+        this.startupGameObject(x, y, z);
+        this.image = image;
+        this.url = url;
         return this;
     }
     

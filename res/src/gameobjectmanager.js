@@ -1,5 +1,6 @@
 function GameObjectManager() {
 	this.gameObjects = new Array();
+    this.loadPage = false;
 	this.lastFrame = new Date().getTime();
 	this.xScroll = 0;
 	this.yScroll = 0;
@@ -8,6 +9,9 @@ function GameObjectManager() {
 	this.context2D = null;
 	this.backBuffer = null;
 	this.backBufferContext2D = null;
+    this.iframe = $('#infoIframe');
+    this.iframe_src = 'static.html';
+    this.currentCreature = null;
 	
 	this.startupGameObjectManager = function() {
 		g_GameObjectManager = this;
@@ -70,16 +74,22 @@ function GameObjectManager() {
 		
         var x_axis = 0, y_axis = 0;
         var player = null;
+        var curr_obj = null;
         //check for collision
 		for(x in this.gameObjects) {
 			if(this.gameObjects[x] instanceof Creature) {
-                //console.log('found a Creature at ' + [this.gameObjects[x].x, this.gameObjects[x].y]);
-				if(collision(this.applicationManager.submarine, this.gameObjects[x])) {
+                curr_obj = this.gameObjects[x];
+				if(collision(this.applicationManager.submarine, curr_obj)) {
+                    this.loadPage = true;
+                    this.currentCreature = curr_obj;
+                    console.log(curr_obj);
                     
+                } else {
+                    this.loadPage = false;
                 }
 			}
-			
 		}
+        
             //if collide == true
                 //load Creature.src into iframe
         
@@ -103,6 +113,8 @@ function GameObjectManager() {
                 this.gameObjects[x].keyDown(event);
             }
         }
+        
+
     }
 
     this.keyUp = function(event) {
@@ -110,10 +122,12 @@ function GameObjectManager() {
         for (x in this.gameObjects) {
             
             if (this.gameObjects[x].keyUp) {
-                
                 this.gameObjects[x].keyUp(event);
             }
         }
+        
+        if(this.loadPage == false) this.info_iframe.src = 'static.html';
+        if(this.loadPage) this.info_iframe.src = this.currentCreature.url;
     }
 	
 }

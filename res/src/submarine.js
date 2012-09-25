@@ -29,6 +29,8 @@ function Submarine()
         @type Boolean
      */
     this.down = false;
+    
+    this.creatureInSight = null;
 
     /**
         Initialises this object
@@ -58,7 +60,7 @@ function Submarine()
         // down
         if (event.keyCode == 40)
             this.down = true;
-        console.log(this.getAnchor());
+        //console.log(this.getAnchor());
     }
 
     /**
@@ -80,6 +82,8 @@ function Submarine()
         // down
         if (event.keyCode == 40)
             this.down = false;
+        //console.log(this.loadPage);
+
     }
 
     /**

@@ -21,7 +21,9 @@ function ApplicationManager()
 
         this.background = new VisualGameObject().startupVisualGameObject(background_img, 0, 0, 0);
 		this.submarine = new Submarine().startupSubmarine();
-        this.vampiresquid = new Creature().startupCreature(vampire_squid, 200, 50, 1, 'vampiresquid.html');
+        this.vampiresquid = new Creature().startupCreature(vampire_squid, 200, 50, 1, 'wikitemplate.html');
+        console.log(this.vampiresquid.url);
+        
         return this;
     }; //z = 1 because this is not in the background
 }
